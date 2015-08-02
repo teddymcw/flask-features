@@ -1,0 +1,88 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+<html>
+  <head>
+
+  </head>
+
+  <body>
+    <title>Extend App</title>
+    {% block title %}Yehhh boy{% endblock %}
+
+    {% block navbar %}
+    <div class="navbar navbar-fixed-top">
+      <div>
+        <a href="{{ url_for('first') }}"> sign up </a>
+      </div>
+
+      <div>
+        <a href="{{ url_for('show_player_standing') }}"> standings </a>
+      </div>
+
+      <div>
+        <a href="{{ url_for('show_player_standing') }}"> standings </a>
+      </div>
+
+      <div>
+        <a href="{{ url_for('show_player_standing') }}"> standings </a>
+      </div>
+
+      <div>
+        <a href="{{ url_for('show_player_standing') }}"> standings </a>
+      </div>
+
+      <div>
+        <a href="{{ url_for('show_player_standing') }}"> standings </a>
+      </div>
+
+    </div>
+    {% endblock %}
+     
+
+    <h1> Hi there, gimme your data </h1>
+    
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class=flashes>
+        {% for message in messages %}
+          {{ message }}
+        {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    
+
+
+
+    {% block content %}
+    
+    <div class="container">               
+    <h1> quick form below </h1>
+    {{ wtf.quick_form(player_sign_up_form) }}
+    </div>
+
+    <div class="container">               
+    <h1> NON quick form below </h1>
+          
+    <form method="POST" action="/signup">
+      {{ player_sign_up_form.csrf_token }}
+      {{ player_sign_up_form.name.label }}    {{ player_sign_up_form.name }}
+      {{ player_sign_up_form.age.label }}     {{ player_sign_up_form.age }}
+      {{ player_sign_up_form.chips.label }}   {{ player_sign_up_form.chips }}
+      <input type="submit" value="gimME!">
+    </form>
+    </div>
+
+    </div>
+
+    {% endblock %}
+
+    
+
+
+    
+  </body>
+</html>
